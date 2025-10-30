@@ -276,11 +276,11 @@ function showFinalPage() {
         <p>Our shared history is not measured by geography, but by the precious moments we have woven together:</p>
 
         <ul>
-            <li<b>3 Years</b> of building a future.</li>
-            <li<b>36 Months</b> that turned a beginning into an eternity.</li>
-            <li<b>1,096 Days</b> where you were my reason to wake up.</li>
-            <li<b>26,304 Hours</b> of laughter, comfort, and shared silence.</li>
-            <li<b>1,578,240 Minutes</b> where our hearts beat side-by-side.</li>
+            <li><b>3 Years</b> of building a future.</li>
+            <li><b>36 Months</b> that turned a beginning into an eternity.</li>
+            <li><b>1,096 Days</b> where you were my reason to wake up.</li>
+            <li><b>26,304 Hours</b> of laughter, comfort, and shared silence.</li>
+            <li><b>1,578,240 Minutes</b> where our hearts beat side-by-side.</li>
             <li>A breathtaking <b>94,694,400 Seconds</b> of pure love.</li>
         </ul>
 
