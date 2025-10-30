@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our 3-Year Anniversary Challenge: For My Love</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <audio id="background-music" loop>
+        <source src="anniversary-bgm.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+    <audio id="cheer-sound" src="cheer.mp3"></audio>
+
+    <div id="intro-screen" class="screen active">
+        
+        <video id="intro-video" muted playsinline preload="auto">
+            <source src="your_intro_video.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        
+        <div id="intro-overlay">
+            <h1 id="welcome-message" class="hidden">Welcome to Our Version Of Events, <br>Baby Girl 💕<br> Happy Anniversary, Boopsie 💕</h1>
+            <button id="start-button" class="hidden">START OUR JOURNEY</button>
+        </div>
+    </div>
+
+    <div id="app-container" class="screen hidden">
+        <div id="header">
+            <div id="progress-bar-container">
+                <div id="progress-bar-fill"></div>
+            </div>
+            <div id="timer"></div>
+        </div>
+        <div id="content-area">
+            </div>
+        <canvas id="confetti-canvas"></canvas>
+    </div>
+
+    <div id="final-spinner-overlay" class="hidden">
+            <div class="spinner-content">
+                <div class="spinner"></div>
+                <h2 id="spinner-text">Processing your commitment...</h2>
+            </div>
+        </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,615 @@
+/* --- 1. Root Variables and Body Styling (Luxury Theme) --- */
+:root {
+    --primary-color: #ff69b4; /* Deep Rose Pink */
+    --secondary-color: #ffc0cb; /* Soft Blush Pink */
+    --accent-color: #cc0066; /* Rich Berry */
+    --text-color-dark: #333333; /* Darker text for luxury */
+    --text-color-light: #666666; /* Lighter text for descriptions */
+    --background-light: #ffffff; /* Pure white for form background */
+    --background-dark: #ffe6f0; /* Gentle screen background */
+    --font-heading: 'Playfair Display', serif; /* Elegant serif font for headings */
+    --font-body: 'Poppins', sans-serif; /* Clean, modern font for body text */
+    --border-radius: 20px;
+    --shadow-soft: 0 10px 30px rgba(0, 0, 0, 0.08);
+    --shadow-lift: 0 15px 40px rgba(0, 0, 0, 0.15);
+    --error-color: #e74c3c;
+    --success-color: #27ae60;
+}
+
+body {
+    font-family: var(--font-body);
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: linear-gradient(135deg, var(--background-dark) 0%, #ffffff 100%);
+    color: var(--text-color-dark);
+    overflow-y: auto; 
+    transition: background-color 0.5s ease;
+}
+
+/* Screen Management */
+.screen {
+    width: 100%;
+    height: 100%;
+    position: fixed; 
+    top: 0;
+    left: 0;
+    transition: opacity 1s ease-in-out;
+    opacity: 0;
+    visibility: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.screen.active {
+    opacity: 1;
+    visibility: visible;
+    position: static;
+    min-height: 100vh;
+}
+
+.screen.hidden {
+    display: none;
+}
+
+/* --- 2. Intro Screen Specifics --- */
+
+#intro-screen {
+    position: relative;
+    background-color: #000;
+    overflow: hidden;
+}
+
+#intro-video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    z-index: 1;
+    transform: translate(-50%, -50%);
+    object-fit: cover;
+    opacity: 0; 
+    transition: opacity 2s ease-in-out;
+}
+
+#intro-video.revealed {
+    opacity: 1;
+}
+
+#intro-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 2; 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5); 
+}
+
+#welcome-message {
+    font-family: var(--font-heading);
+    font-size: 4.5em; 
+    color: white;
+    text-align: center;
+    margin-bottom: 30px;
+    opacity: 0;
+    transform: scale(0.9);
+    transition: opacity 1.5s ease-out, transform 1.5s ease-out;
+    text-shadow: 0 4px 10px rgba(0,0,0,0.7); 
+}
+
+#welcome-message.revealed {
+    opacity: 1;
+    transform: scale(1);
+}
+
+#start-button {
+    position: relative; 
+    z-index: 3; 
+    padding: 18px 40px;
+    font-size: 1.6em;
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 50px; 
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: var(--shadow-soft);
+    transform: translateY(20px);
+    letter-spacing: 1.5px;
+    font-weight: 600;
+}
+
+#start-button:hover {
+    background-color: var(--accent-color);
+    box-shadow: var(--shadow-lift);
+    transform: translateY(-5px);
+}
+
+
+/* --- 3. App Container (The Central Card - FIX VERTICAL OVERFLOW) --- */
+#app-container {
+    background: var(--background-light); 
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-lift); 
+    padding: 50px 60px; 
+    width: 90%;
+    max-width: 800px; 
+    box-sizing: border-box;
+    position: relative;
+    
+    min-height: auto; 
+    margin: 30px 0; 
+
+    display: flex; 
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center; 
+    text-align: center;
+}
+
+/* --- 4. Login System / Content Area (Exquisite Alignment & Style) --- */
+
+#login-screen-title { 
+    font-family: var(--font-heading);
+    font-size: 3em; 
+    color: var(--accent-color);
+    margin-bottom: 10px;
+    letter-spacing: 2px;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.1);
+}
+
+#login-screen-subtitle { 
+    font-size: 1.2em;
+    color: var(--text-color-light);
+    margin-bottom: 40px; 
+    line-height: 1.5;
+}
+
+/* LOGIN FORM: Elevated Design */
+#login-form {
+    display: grid;
+    grid-template-columns: 1.2fr 2fr; 
+    gap: 25px 35px; 
+    max-width: 600px;
+    margin: 30px auto 10px auto; 
+    padding: 35px 50px; 
+    border: 1px solid var(--secondary-color);
+    border-radius: var(--border-radius);
+    background: linear-gradient(145deg, #ffffff 0%, #f9f9f9 100%); 
+    box-shadow: var(--shadow-soft); 
+    position: relative; 
+    transition: all 0.3s ease;
+}
+
+#login-form:hover {
+    box-shadow: var(--shadow-lift); 
+}
+
+#login-form label {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end; 
+    font-weight: 600;
+    color: var(--text-color-dark);
+    font-size: 1.1em; 
+    padding-right: 15px; 
+    letter-spacing: 0.5px;
+}
+
+#login-form input {
+    width: 100%;
+    padding: 15px; 
+    border: 1px solid var(--secondary-color); 
+    border-radius: 10px; 
+    font-size: 1.2em; 
+    box-sizing: border-box;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+    background-color: #fcfcfc; 
+}
+
+#login-form input:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 12px rgba(255, 105, 180, 0.4);
+    outline: none;
+    background-color: #fff;
+}
+
+#login-error {
+    grid-column: 1 / 3; 
+    text-align: center;
+    margin-top: 20px;
+    font-size: 1.1em;
+    font-weight: 600;
+    color: var(--error-color); 
+}
+
+/* SUBMIT BUTTON Styling */
+#submit-login {
+    display: block; 
+    margin: 30px auto 10px auto; 
+    width: auto;
+    
+    padding: 18px 45px; 
+    font-size: 1.6em; 
+    font-weight: bold;
+    border-radius: 50px;
+    background-color: var(--primary-color);
+    box-shadow: var(--shadow-soft);
+    color: white; 
+    border: none; 
+    cursor: pointer;
+    letter-spacing: 2px; 
+    transition: all 0.3s ease;
+}
+
+#submit-login:hover {
+    background-color: var(--accent-color);
+    box-shadow: var(--shadow-lift);
+    transform: translateY(-5px) scale(1.02);
+}
+
+
+/* --- 5. Quiz Layout and Elements --- */
+
+#header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 40px; 
+    width: 100%; 
+}
+
+#progress-bar-container {
+    width: 75%;
+    height: 12px;
+    background-color: var(--secondary-color);
+    border-radius: var(--border-radius);
+    box-shadow: inset 0 1px 3px rgba(0,0,0,0.1);
+}
+
+#progress-bar-fill {
+    height: 100%;
+    width: 0%;
+    background-color: var(--primary-color);
+    border-radius: var(--border-radius);
+    transition: width 0.5s ease-out;
+}
+
+#timer {
+    font-family: var(--font-heading);
+    font-size: 1.3em;
+    font-weight: 700;
+    color: var(--accent-color);
+}
+
+h2 {
+    font-family: var(--font-heading);
+    font-size: 1.8em; 
+    color: var(--primary-color); 
+    margin-bottom: 20px;
+    letter-spacing: 0.5px;
+}
+
+.question-text {
+    font-family: var(--font-heading);
+    font-size: 2.2em; 
+    margin-bottom: 25px;
+    color: var(--accent-color);
+    text-shadow: 0 1px 2px rgba(0,0,0,0.05);
+    font-weight: 700;
+    line-height: 1.3;
+}
+
+.question-image {
+    max-width: 90%;
+    height: auto;
+    max-height: 250px; 
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1); 
+    margin-bottom: 30px;
+    object-fit: cover; 
+}
+
+/* INPUT QUESTION LAYOUT */
+#answer-input {
+    width: 60%; 
+    max-width: 350px;
+    padding: 15px; 
+    border: 2px solid var(--secondary-color);
+    border-radius: 10px; 
+    font-size: 1.2em; 
+    box-sizing: border-box;
+    display: block;
+    margin: 15px auto 10px auto;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+#submit-answer {
+    padding: 12px 30px;
+    font-size: 1.3em;
+    font-weight: 600;
+    background-color: var(--primary-color);
+    color: white;
+    border-radius: 30px;
+    transition: all 0.3s ease;
+    border: none;
+    margin-left: 0;
+}
+
+#submit-answer:hover {
+    background-color: var(--accent-color);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+}
+
+/* MULTI-CHOICE BUTTONS */
+#options-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px 25px; 
+    margin-top: 40px; 
+    width: 100%;
+}
+
+.answer-btn {
+    padding: 15px 30px;
+    font-size: 1.1em;
+    font-weight: 600;
+    border: 2px solid var(--primary-color);
+    border-radius: 30px;
+    background-color: transparent; 
+    color: var(--primary-color);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    min-width: 180px; 
+    text-transform: uppercase; 
+    letter-spacing: 0.8px;
+    margin: 5px;
+}
+
+.answer-btn:hover {
+    background-color: var(--primary-color);
+    color: white;
+    box-shadow: var(--shadow-soft);
+    transform: translateY(-2px);
+}
+
+/* --- 6. Word Search Specific Styles (No Change) --- */
+#word-search-grid-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    background-color: var(--background-light);
+    border-radius: var(--border-radius);
+    padding: 15px;
+    box-shadow: inset 0 0 10px rgba(0,0,0,0.05);
+}
+
+.word-search-grid {
+    display: grid;
+    grid-template-columns: repeat(var(--grid-size, 15), 1fr); 
+    grid-template-rows: repeat(var(--grid-size, 15), 1fr); 
+    border: 2px solid var(--primary-color);
+    border-radius: 8px;
+    overflow: hidden;
+    max-width: 450px; 
+    max-height: 450px;
+    aspect-ratio: 1 / 1; 
+}
+
+.grid-cell {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.1em;
+    font-weight: bold;
+    color: var(--text-color-dark);
+    user-select: none;
+    cursor: pointer;
+    border: 1px solid rgba(0,0,0,0.05);
+    box-sizing: border-box;
+    transition: background-color 0.1s ease;
+}
+
+.grid-cell.highlighted {
+    background-color: var(--secondary-color);
+    color: white;
+}
+
+.grid-cell.found {
+    background-color: var(--success-color);
+    color: white;
+}
+
+#word-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    font-size: 1.1em;
+}
+
+#word-list span.word-found {
+    background-color: var(--success-color);
+    color: white;
+    text-decoration: line-through;
+}
+
+/* Final Page & Runaway Button */
+#no-button-container {
+    position: relative;
+    width: 100%;
+    height: 100px; 
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#no-button {
+    position: absolute;
+    transition: all 0.2s ease-out; 
+}
+
+/* Confetti Canvas */
+#confetti-canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 9999; 
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* --- 7. Media Queries for Responsiveness (Refined) --- */
+@media (max-width: 768px) {
+    body {
+        padding: 0;
+    }
+    
+    #app-container {
+        padding: 25px;
+        min-height: auto; 
+        margin: 20px 0; 
+    }
+    
+    #login-screen-title {
+        font-size: 2.2em; 
+    }
+
+    #login-form {
+        grid-template-columns: 1fr; 
+        gap: 15px; 
+        padding: 15px;
+    }
+
+    #login-form label {
+        justify-content: flex-start; 
+        padding-top: 5px;
+        padding-right: 0;
+        font-size: 0.95em;
+    }
+    
+    #login-form input {
+        width: 100%;
+        margin-bottom: 5px;
+        font-size: 1em; 
+        padding: 12px;
+    }
+
+    #submit-login {
+        margin-top: 25px;
+        font-size: 1.3em;
+        padding: 15px 30px;
+    }
+    
+    #welcome-message {
+        font-size: 3em;
+    }
+
+    .question-text {
+        font-size: 1.6em; /* Adjust question size for mobile */
+    }
+    
+    #answer-input {
+        width: 85%;
+        max-width: 100%;
+        display: block; 
+        margin: 15px auto 10px auto;
+    }
+    
+    #submit-answer {
+        margin-left: 0;
+        width: 60%;
+    }
+
+    .answer-btn {
+        min-width: 140px;
+        flex-grow: 1; 
+    }
+}
+
+/* --- FULLSCREEN MODAL STYLING (NEW!) --- */
+
+#puzzle-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(255, 255, 255, 0.95); /* Semi-transparent white background */
+    z-index: 10000; /* CRITICAL: Ensure it is on top of everything */
+    display: none; /* Starts hidden */
+    justify-content: center;
+    align-items: center;
+    backdrop-filter: blur(5px); /* Add a subtle blur for elegance (modern browsers) */
+    transition: opacity 0.3s ease;
+    opacity: 0;
+}
+
+#puzzle-modal-overlay.visible {
+    display: flex;
+    opacity: 1;
+}
+
+#maximized-puzzle-content {
+    background-color: var(--background-light);
+    padding: 30px;
+    border-radius: var(--border-radius);
+    box-shadow: 0 0 50px rgba(0, 0, 0, 0.3); /* Strong shadow for a floating effect */
+    max-width: 95%; /* Responsive width */
+    max-height: 95%;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#maximized-puzzle-content #close-modal-btn {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: var(--error-color);
+    color: white;
+    font-size: 1.5em;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+    line-height: 1;
+    z-index: 10001;
+    transition: transform 0.2s ease;
+}
+
+#maximized-puzzle-content #close-modal-btn:hover {
+    transform: rotate(90deg);
+    background: var(--accent-color);
+}
+
+/* Ensure the grid is styled properly inside the modal */
+#maximized-puzzle-content .word-search-grid {
+    border-color: var(--accent-color); /* Make it pop in fullscreen */
+    margin-top: 15px;
+}
